@@ -30,7 +30,7 @@ In this repo you will find:
 
 A description of the functionalities of every functional block follows.
 
-- ### ALU
+### 1. ALU
 
 the Aritmetic and logic unit (ALU) is responsible for all the math performed in this CPU. It is a 8-bit ALU.
 
@@ -44,27 +44,24 @@ Moreover, an additional input coming from control unit is used as carry in (**c<
 
 The operation is selected by 4 bits (**op_sel**):
 
-0000 A+B+c<sub>in</sub>        (addition with **c<sub>in</sub>**=0)
-0001 A+not(B)+c<sub>in</sub>   (subtraction with **c<sub>in</sub>**=1)
-0010 A+c<sub>in</sub>          (increment A if **c<sub>in</sub>**=1, NOOP if **c<sub>in</sub>**=0)
-0011 A-1+c<sub>in</sub>        (decrement A if **c<sub>in</sub>**=0, NOOP if **c<sub>in</sub>**=1)
-
-0100 not(A)
-0101 A and B
-0110 A or B
-0111 A xor B
-
-1000 A>>1            (logic shift right)
-1001 A>>1            (aritmetic shift right)
-1010 A<<1            (logic/aritmetic shift left)
-
-1011 ---
-1100 ---
-1101 ---
-1110 ---
+0000 A+B+c<sub>in</sub>        (addition with **c<sub>in</sub>**=0)\
+0001 A+not(B)+c<sub>in</sub>   (subtraction with **c<sub>in</sub>**=1)\
+0010 A+c<sub>in</sub>          (increment A if **c<sub>in</sub>**=1, NOOP if **c<sub>in</sub>**=0)\
+0011 A-1+c<sub>in</sub>        (decrement A if **c<sub>in</sub>**=0, NOOP if **c<sub>in</sub>**=1)\
+0100 not(A)\
+0101 A and B\
+0110 A or B\
+0111 A xor B\
+1000 A>>1            (logic shift right)\
+1001 A>>1            (aritmetic shift right)\
+1010 A<<1            (logic/aritmetic shift left)\
+1011 ---\
+1100 ---\
+1101 ---\
+1110 ---\
 1111 ---
 
-- ### Registers
+### 2. Registers
 
 8 bits registers are used since the BUS is only 8 bit. These registers are written on rising front of **in** signal.
 
@@ -84,15 +81,15 @@ Moreover, general purpose registers can be used:
 - R4: 4 8-bit registers
 - R5: 4 8-bit registers
 
-- ### Program Memory
+### 3. Program Memory
 
 The EEPROM memory containing the program is addressed by 13 bits (total 8192 assembly instructions). The returned instruction is 26 bits long.
 
-- ### RAM Memory
+### 4. RAM Memory
 
 Addressed by MAR (two registers, one for LSB and one for MSB). The returned data are sent to MDR register.
 
-- ### Control Unit
+### 5. Control Unit
 
 The instruction word is 26 bits long: the 6 most significant bytes are the OPCODE (reported in _Instruction set.xlsx_), followed by at most 3 operands that can be integers or general purpose registers.
 
