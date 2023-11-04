@@ -32,27 +32,77 @@ A description of the functionalities of every functional block follows.
 
 - ### ALU
 
-(to be committed...)
+the Aritmetic and logic unit (ALU) is responsible for all the math performed in this CPU. It is a 8-bit ALU.
+
+A and B are two 8-bit registers for storing the operands. The result is written directly on BUS (there is an appropriate 32-bit accumulator register that can be filled, if necessary). From this component 3 status flags are sent to the control unit through a 4-bit status register:
+
+- **c<sub>out</sub>**, namely carry out
+- **is_zero**, (tells if the result is 00000000)
+- **overflow**,
+
+Moreover, an additional input coming from control unit is used as carry in (**c<sub>in</sub>**)
+
+The operation is selected by 4 bits (**op_sel**):
+
+0000 A+B+c<sub>in</sub>        (addition with **c<sub>in</sub>**=0)
+0001 A+not(B)+c<sub>in</sub>   (subtraction with **c<sub>in</sub>**=1)
+0010 A+c<sub>in</sub>          (increment A if **c<sub>in</sub>**=1, NOOP if **c<sub>in</sub>**=0)
+0011 A-1+c<sub>in</sub>        (decrement A if **c<sub>in</sub>**=0, NOOP if **c<sub>in</sub>**=1)
+
+0100 not(A)
+0101 A and B
+0110 A or B
+0111 A xor B
+
+1000 A>>1            (logic shift right)
+1001 A>>1            (aritmetic shift right)
+1010 A<<1            (logic/aritmetic shift left)
+
+1011 ---
+1100 ---
+1101 ---
+1110 ---
+1111 ---
 
 - ### Registers
 
-(to be committed...)
+8 bits registers are used since the BUS is only 8 bit. These registers are written on rising front of **in** signal.
+
+Beyond ALU's registers (A, B, status and Accumulator) there are:
+
+- MAR: 2 8-bit registers for RAM memory address
+- MDR: 1 8-bit register for RAM data in/out
+- PC: 2 8-bit registers for program counter
+- SP: 2 8-bit registers for stack pointer
+
+Moreover, general purpose registers can be used:
+
+- R0: 2 8-bit registers
+- R1: 2 8-bit registers
+- R2: 2 8-bit registers
+- R3: 2 8-bit registers
+- R4: 4 8-bit registers
+- R5: 4 8-bit registers
 
 - ### Program Memory
 
-(to be committed...)
+The EEPROM memory containing the program is addressed by 13 bits (total 8192 assembly instructions). The returned instruction is 26 bits long.
 
 - ### RAM Memory
 
-(to be committed...)
+Addressed by MAR (two registers, one for LSB and one for MSB). The returned data are sent to MDR register.
 
 - ### Control Unit
 
-(to be committed...)
+The instruction word is 26 bits long: the 6 most significant bytes are the OPCODE (reported in _Instruction set.xlsx_), followed by at most 3 operands that can be integers or general purpose registers.
+
+The chosen control strategy is MICROCODE: an additional EEPROM memory addressed by the OPCODE, the status flags and 4 additional bit encoding for the clock step (allowing up to 16 steps per instruction). In particular, the status flags constitute the 3 most significant bits. For example, if an increment operations returns **c<sub>out</sub>**=1, the currently addressed microcode block changes, making it necessary to duplicate the instructions 8 times (2<sup>3</sup>).
+
+The number of control signals is 32, hence each step of the microcode must return a string of 32 bits. To reduce the number of control signals, 3 signals (CU op1/CU op2/CU res reg) are introduced to choose which part of the instruction must select the current register: whether it is the part corresponding to the result register, the first operand register or the second one (since the general purpose registers are selected by a 4 bit sequence, this solution spares 1 bit).
 
 ## Instruction Set
 
-(to be committed...)
+The instruction set and all related information can be found in _Instruction set.xlsx_.
 
 ## Credits
 
