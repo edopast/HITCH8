@@ -30,23 +30,23 @@ In this repo you will find:
 
 A description of the functionalities of every functional block follows.
 
-### ALU
+- ### ALU
 
 (to be committed...)
 
-### Registers
+- ### Registers
 
 (to be committed...)
 
-### Program Memory
+- ### Program Memory
 
 (to be committed...)
 
-### RAM Memory
+- ### RAM Memory
 
 (to be committed...)
 
-### Control Unit
+- ### Control Unit
 
 (to be committed...)
 
