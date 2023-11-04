@@ -14,6 +14,18 @@ The name is an acronym paying homage to Douglas Adams' novel _The Hitchhiker's G
 
 This project is intended as a purely recreational diversion for electronics and computer science enthusiasts. The author is aware that the choices made for this project are far from the efficiency of professional CPUs: he just wanted to put into practice all the stuff learned at University :slightly_smiling_face:
 
+## Content of the repo
+
+In this repo you will find:
+
+- 2 logisim project, namely "HITCH8_w_buttons.circ", that is the first project in which every circuital block must be activated by hand, and "HITCH8.circ", the current project in which buttons are replaced by control unit signals;
+
+- A directory "microcode" with the commented microcode (i.e. the memory to be stored in the microcode EEPROM, inside the control unit) and the uncommented microcode to be loaded;
+
+- A directory "programs" with all the assembly programs so far created, to be loaded in program EEPROM;
+
+- An .xlsx worksheet with important information regarding the instruction set and microcode memory.
+
 ## Blocks
 
 A description of the functionalities of every functional block follows.
