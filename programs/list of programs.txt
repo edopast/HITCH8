@@ -1,0 +1,7 @@
+program1 --> NOP 101 times, then HLT
+
+program2 --> NOP, R0_l-AND-R0_m and Put result in R1_l.
+Then R1_l-OR-R1_m and Put result in R2_l.
+Then R2_l-AND-R2_m and Put result in R0_l.
+Repeat, then HLT. NOTE: preliminarly load some numbers in R0_l, R0_m, R1_m, R2_m
+
