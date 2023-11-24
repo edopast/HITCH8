@@ -95,7 +95,9 @@ The instruction word is 26 bits long: the 6 most significant bytes are the OPCOD
 
 The chosen control strategy is MICROCODE: an additional EEPROM memory addressed by the OPCODE, the status flags and 4 additional bit encoding for the clock step (allowing up to 16 steps per instruction). In particular, the status flags constitute the 3 most significant bits. For example, if an increment operations returns **c<sub>out</sub>**=1, the currently addressed microcode block changes, making it necessary to duplicate the instructions 8 times (2<sup>3</sup>).
 
-The number of control signals is 32, hence each step of the microcode must return a string of 32 bits. To reduce the number of control signals, 3 signals (CU op1/CU op2/CU res reg) are introduced to choose which part of the instruction must select the current register: whether it is the part corresponding to the result register, the first operand register or the second one (since the general purpose registers are selected by a 4 bit sequence, this solution spares 1 bit).
+The number of control signals is 32, hence each step of the microcode must return a string of 32 bits. To reduce the number of control signals, 3 signals (CU op1/CU op2/CU res reg) are introduced to choose which part of the instruction must select the current register: whether it is the part corresponding to the result register, the first operand register or the second one. Since the general purpose registers are selected by a 4 bit sequence, this solution spares 1 bit. A similar strategy has been used to select which part of the instruction must be written on the BUS (because it holds an integer value to be sent to some other block).
+
+The full list of control signals can be found in _Instruction set.xlsx_.
 
 ## Instruction Set
 
