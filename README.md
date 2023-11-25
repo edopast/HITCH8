@@ -36,7 +36,7 @@ the Aritmetic and logic unit (ALU) is responsible for all the math performed in 
 
 A and B are two 8-bit registers for storing the operands. The result is written directly on BUS (there is an appropriate 32-bit accumulator register that can be filled, if necessary). From this component 3 status flags are sent to the control unit through a 4-bit status register:
 
-- **c<sub>out</sub>**, namely carry out
+- **c<sub>out</sub>**, namely carry out. Used to tell the control unit whether an addition produces a carry-out bit, OR if a bit-wise shift discards a bit = 1.
 - **is_zero**, (tells if the result is 00000000)
 - **overflow**,
 
@@ -95,7 +95,8 @@ The instruction word is 26 bits long: the 6 most significant bytes are the OPCOD
 
 The chosen control strategy is MICROCODE: an additional EEPROM memory addressed by the OPCODE, the status flags and 4 additional bit encoding for the clock step (allowing up to 16 steps per instruction). In particular, the status flags constitute the 3 most significant bits. For example, if an increment operations returns **c<sub>out</sub>**=1, the currently addressed microcode block changes, making it necessary to duplicate the instructions 8 times (2<sup>3</sup>).
 
-The number of control signals is 32, hence each step of the microcode must return a string of 32 bits. To reduce the number of control signals, 3 signals (CU op1/CU op2/CU res reg) are introduced to choose which part of the instruction must select the current register: whether it is the part corresponding to the result register, the first operand register or the second one. Since the general purpose registers are selected by a 4 bit sequence, this solution spares 1 bit. A similar strategy has been used to select which part of the instruction must be written on the BUS (because it holds an integer value to be sent to some other block).
+The number of control signals is 32, hence each step of the microcode must return a string of 32 bits. To reduce the number of control signals, 3 signals (CU op1/CU op2/CU res reg) are introduced to choose which part of the instruction must select the current register: whether it is the part corresponding to the result register, the first operand register or the second one. Since the general purpose registers are selected by a 4 bit sequence, this solution spares 1 bit.
+A similar strategy has been used to select which part of the instruction must be written on the BUS (because it holds an integer value to be sent to some other block).
 
 The full list of control signals can be found in _Instruction set.xlsx_.
 
