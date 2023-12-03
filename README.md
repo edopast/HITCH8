@@ -52,9 +52,9 @@ The operation is selected by 4 bits (**op_sel**):
 0101 A and B\
 0110 A or B\
 0111 A xor B\
-1000 A>>1            (logic shift right)\
-1001 A>>1            (aritmetic shift right)\
-1010 A<<1            (logic/aritmetic shift left)\
+1000 A>>1            (logic shift right. bit out --> c_out, c_in --> new bit in)\
+1001 A>>1            (aritmetic shift right. bit out --> c_out)\
+1010 A<<1            (logic/aritmetic shift left. bit out --> c_out, c_in --> new bit in)\
 1011 ---\
 1100 ---\
 1101 ---\
