@@ -19,3 +19,25 @@ R1_m: 0x81; R1_l: 0xA8
 R2_m: 0x01; R2_l: 0xA0
 R3_m: 0xD3; R3_l: 0xFF
 
+program4 --> NOP, shift left (8bit) R0_l and save in R0_m,
+Shift right (8bit) R0_l and save in R1_l,
+Aritmetic shift right (8bit) R0_l and save in R1_m.
+Then, shift left (16bit) R1 and save in R2,
+Shift right (16bit) R1 and save in R4_l,
+Aritmetic shift right (16bit) R1 and save in R4_m.
+Then, shift left (32bit) R4 and save in R5,
+Shift right (32bit) R4 and save in R5,
+Aritmetic shift right (32bit) R4 and save in R5, then HLT.
+NOTE: preliminarly load some numbers in R0: R0_l: 0xD3
+Final result:
+R0_m: 0xA6; R0_l: 0xD3
+R1_m: 0xE9; R1_l: 0x69
+R2_m: 0xD2; R2_l: 0xD2
+R4_mh: 0xF4; R4_ml: 0xB4; R4_lh: 0x74; R4_ll: 0xB4;
+R5_mh: 0xE9; R5_ml: 0x68; R5_lh: 0xE9; R5_ll: 0x68; (first op)
+R5_mh: 0x7A; R5_ml: 0x5A; R5_lh: 0x3A; R5_ll: 0x5A; (second op)
+R5_mh: 0xFA; R5_ml: 0x5A; R5_lh: 0x3A; R5_ll: 0x5A; (third op)
+
+
+
+
