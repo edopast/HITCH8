@@ -38,6 +38,22 @@ R5_mh: 0xE9; R5_ml: 0x68; R5_lh: 0xE9; R5_ll: 0x68; (first op)
 R5_mh: 0x7A; R5_ml: 0x5A; R5_lh: 0x3A; R5_ll: 0x5A; (second op)
 R5_mh: 0xFA; R5_ml: 0x5A; R5_lh: 0x3A; R5_ll: 0x5A; (third op)
 
+program5 --> NOP, then perform:
+ADD16 R2=R0+R1
+SUB16 R3=R0-R1
+ADD32 R5=R4+R5
+SUB32 R5=R4-R5
+NOTE: operations are with sign!
+NOTE2: preliminarly load some numbers in R0,R1,R4,R5:
+R0: 3201 0x0C81
+R1: 749 0x02ED (if you want to trigger overflow: 32500 0x7EF4 )
+R4: 524680 0x00080188
+R5: 786364 0x000BFFBC
+Final result: 
+R2: 3950 0x0F6E (if R1==32500 overflow --> 35701, hence -29835 0X8B75 )
+R3: 2452 0x0994 (if R1==32500 --> -29299 0X8D8D )
+R5 (1st op): 1311044 0x00140144
+R5 (2nd op): -786364 0xFFF40044
 
 
 
