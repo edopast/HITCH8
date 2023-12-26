@@ -102,7 +102,22 @@ The full list of control signals can be found in _Instruction set.xlsx_.
 
 ## Instruction Set
 
-The instruction set and all related information can be found in _Instruction set.xlsx_. In the future, this section will be updated.
+The complete instruction set and all related information can be found in _Instruction set.xlsx_.
+
+Supported instructions are:
+
+- NOP: no operation, go to next instruction;
+- HLT: stop execution;
+- AND: bitwise AND (8 or 16 bits) between two registers;
+- OR: bitwise OR (8 or 16 bits) between two registers;
+- SHL: bitwise logic shift to the left the content of a register (8, 16 or 32 bits);
+- SHR: bitwise logic shift to the right the content of a register (8, 16 or 32 bits);
+- SHRA: bitwise aritmetic shift to the right the content of a register (8, 16 or 32 bits);
+- ADD: addition between two registers (16 or 32 bits);
+- SUB: subtraction between two registers (16 or 32 bits);
+- LDW: load from RAM memory to a register (8 or 16 bits);
+- STW: store content of a register to RAM memory (8 or 16 bits);
+- [to be completed...]
 
 ## Credits
 
