@@ -102,7 +102,7 @@ The full list of control signals can be found in _Instruction set.xlsx_.
 
 ## Instruction Set
 
-The instruction set and all related information can be found in _Instruction set.xlsx_.
+The instruction set and all related information can be found in _Instruction set.xlsx_. In the future, this section will be updated.
 
 ## Credits
 

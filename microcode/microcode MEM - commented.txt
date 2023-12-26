@@ -24,8 +24,8 @@
 // STW 8
 // LDW 16
 // STW 16
-// LDW 32
-// STW 32
+// [removed instruction]
+// [removed instruction]
 // BRZ 8
 // BRG 8
 // BRGE 8
