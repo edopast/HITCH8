@@ -87,7 +87,8 @@ The EEPROM memory containing the program is addressed by 13 bits (total 8192 ass
 
 ### 4. RAM Memory
 
-Addressed by MAR (two registers, one for LSB and one for MSB). The returned data are sent to MDR register.
+Addressed by MAR (actually two registers, one for LSB and one for MSB). The returned data are sent to MDR register.
+This module is meant to store variables (the user/compiler must keep track of their address and size in memory, as a sort of "heap" area). Moreover, a register called "stack pointer" is used to point to the first 8-bit free address, forming the stack. In order to separate stack and heap, the former starts from 0x0000 and is filled incrementing the address, while the latter starts from 0xFFFF and is filled decrementing the address.
 
 ### 5. Control Unit
 
@@ -113,8 +114,10 @@ Supported instructions are:
 - SHL: bitwise logic shift to the left the content of a register (8, 16 or 32 bits);
 - SHR: bitwise logic shift to the right the content of a register (8, 16 or 32 bits);
 - SHRA: bitwise aritmetic shift to the right the content of a register (8, 16 or 32 bits);
-- ADD: addition between two registers (16 or 32 bits);
-- SUB: subtraction between two registers (16 or 32 bits);
+- ADD: addition between two registers (8, 16 or 32 bits);
+- SUB: subtraction between two registers (8, 16 or 32 bits);
+- ADDI: register plus 8-bit immediate (8 bits reg);
+- SUBI: register minus 8-bit immediate (8 bits reg);
 - LDW: load from RAM memory to a register (8 or 16 bits);
 - STW: store content of a register to RAM memory (8 or 16 bits);
 - [to be completed...]
