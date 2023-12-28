@@ -120,7 +120,11 @@ Supported instructions are:
 - SUBI: register minus 8-bit immediate (8 bits reg);
 - LDW: load from RAM memory to a register (8 or 16 bits);
 - STW: store content of a register to RAM memory (8 or 16 bits);
-- [to be completed...]
+- BRZ: branch to program instruction if register (8 bit) = 0
+- BRG: branch to program instruction if register (8 bit) > 0
+- BRGE: branch to program instruction if register (8 bit) >= 0
+- BRL: branch to program instruction if register (8 bit) < 0
+- BRLE: branch to program instruction if register (8 bit) <= 0
 
 ## Credits
 
