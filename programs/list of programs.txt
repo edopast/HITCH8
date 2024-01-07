@@ -81,14 +81,36 @@ instr. 0x0039: if R3_m is < 0, branch to 0x0050 (HLT)
 instr. 0x0041: if R4_ll is <= 0, branch to 0x0048 otherwise HLT
 instr. 0x0049: if R4_lh is <= 0, branch to 0x0050 (HLT)
 preliminary load some numbers in R0_l,...,R4_lh:
-R0_l  0x00
-R0_m  0x11
-R1_l  0x0F
-R1_m  0xF0
-R2_l  0x10
-R2_m  0xD0
-R3_l  0xD1
-R3_m  0x1D
-R4_ll 0xFF
-R4_lh 0x10
+R0_l  0x00 (=0)
+R0_m  0x11 (>0)
+R1_l  0x0F (>0)
+R1_m  0xF0 (<0)
+R2_l  0x10 (>0)
+R2_m  0xD0 (<0)
+R3_l  0xD1 (<0)
+R3_m  0x1D (>0)
+R4_ll 0xFF (<0)
+R4_lh 0x10 (>0)
+if everything is executed correctly, the program counter stops at 0x004a.
+
+program8 --> NOP, then:
+instr. 0x0001: if R0 is zero, branch to 0x0008 otherwise HLT
+instr. 0x0009: if R1 is zero, branch to 0x0050 (HLT)
+instr. 0x0011: if R1 is > 0, branch to 0x0018 otherwise HLT
+instr. 0x0019: if R2 is > 0, branch to 0x0050 (HLT)
+instr. 0x0021: if R4_l is >= 0, branch to 0x0028 otherwise HLT
+instr. 0x0029: if R4_m is >= 0, branch to 0x0050 (HLT)
+instr. 0x0031: if R5_l is < 0, branch to 0x0038 otherwise HLT
+instr. 0x0039: if R5_m is < 0, branch to 0x0050 (HLT)
+instr. 0x0041: if R2 is <= 0, branch to 0x0048 otherwise HLT
+instr. 0x0049: if R3 is <= 0, branch to 0x0050 (HLT)
+preliminary load some numbers in all registers
+R0  0x0000 (=0) -or- 0x0000 (=0)
+R1  0x0F00 (>0) -or- 0x0010 (>0)
+R2  0xC500 (<0) -or- 0x0000 (=0)
+R3  0x1000 (>0) -or- 0x0001 (>0)
+R4_l 0x2F00 (>0) -or- 0x00FF (>0)
+R4_m 0xD000 (<0) -or- 0x8000 (<0 - check priority of cout)
+R5_l 0xFF00 (<0) -or- 0x8001 (<0)
+R5_m 0x0000 (=0) -or- 0x0006 (>0)
 if everything is executed correctly, the program counter stops at 0x004a.
