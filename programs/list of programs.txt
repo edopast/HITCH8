@@ -114,3 +114,21 @@ R4_m 0xD000 (<0) -or- 0x8000 (<0 - check priority of cout)
 R5_l 0xFF00 (<0) -or- 0x8001 (<0)
 R5_m 0x0000 (=0) -or- 0x0006 (>0)
 if everything is executed correctly, the program counter stops at 0x004a.
+
+program9 --> NOP, then:
+instr. 0x0001: if R4 is zero, branch to 0x0008 otherwise HLT
+instr. 0x0009: if [R1 - R0] is zero, branch to 0x0050 (HLT)
+instr. 0x0011: if [R1 - R0] is > 0, branch to 0x0018 otherwise HLT
+instr. 0x0019: if R5 is > 0, branch to 0x0050 (HLT)
+instr. 0x0021: if [R1 - R0] is >= 0, branch to 0x0028 otherwise HLT
+instr. 0x0029: if R5 is >= 0, branch to 0x0050 (HLT)
+instr. 0x0031: if R5 is < 0, branch to 0x0038 otherwise HLT
+instr. 0x0039: if R4 is < 0, branch to 0x0050 (HLT)
+instr. 0x0041: if R5 is <= 0, branch to 0x0048 otherwise HLT
+instr. 0x0049: if [R1 - R0] is <= 0, branch to 0x0050 (HLT)
+preliminary load some numbers in R4/R5 registers
+NOTE: [R1 - R0] are used as a 32-bit register
+R4 		0x00000000 (0)
+R5 		0xf1001000 (<0)
+[R1 - R0]	0x0000f110 (>0)
+if everything is executed correctly, the program counter stops at 0x004a.
