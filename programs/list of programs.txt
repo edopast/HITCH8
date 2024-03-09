@@ -140,9 +140,15 @@ MOV8 from R1_m to R0_m
 MOV16 from R0 to R4_l
 MOV16 from R1 to R4_m
 MOV32 from R4 to R5
+ADDI8 R2_l = R2_l + 0x05
+ADDI8 R2_m = R2_l + 0x0F
+SUBI8 R3_l = R3_l - 0x10
+SUBI8 R3_m = R3_l - 0x02
 HLT
 It should end up like this:
 R0 0x57AF
 R1 0x579B
+R2 0x1405
+R3 0xEEF0
 R4 0x579B57AF
 R5 0x579B57AF
