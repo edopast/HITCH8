@@ -132,3 +132,17 @@ R4 		0x00000000 (0)
 R5 		0xf1001000 (<0)
 [R1 - R0]	0x0000f110 (>0)
 if everything is executed correctly, the program counter stops at 0x004a.
+
+program10 --> NOP, then:
+MOVI8 0xAF to R0_l
+MOVI16 0x579B to R1
+MOV8 from R1_m to R0_m
+MOV16 from R0 to R4_l
+MOV16 from R1 to R4_m
+MOV32 from R4 to R5
+HLT
+It should end up like this:
+R0 0x57AF
+R1 0x579B
+R4 0x579B57AF
+R5 0x579B57AF

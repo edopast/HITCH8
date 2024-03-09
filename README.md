@@ -125,6 +125,8 @@ Supported instructions are:
 - BRGE: branch to program instruction if register (8, 16 or 32 bits) >= 0
 - BRL: branch to program instruction if register (8, 16 or 32 bits) < 0
 - BRLE: branch to program instruction if register (8, 16 or 32 bits) <= 0
+- MOV: move content of general-purpose register to another one, (8, 16 or 32 bits)
+- MOVI: move 8bit or 16bit number to general-purpose register
 
 ## Credits
 
