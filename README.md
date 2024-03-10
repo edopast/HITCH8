@@ -1,7 +1,6 @@
-# HITCH8
-Project files for a 8-bit homebrew CPU
-
 ![logo](https://raw.githubusercontent.com/edopast/HITCH8/master/hitch8graphic.png)
+
+Project files for a 8-bit homebrew CPU
 
 This repository holds a set of files used to design a homebrew CPU based on a Harward architecture, an 8-bit bus and 8-bit registers, just for educational purposes.
 
