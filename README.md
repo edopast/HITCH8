@@ -127,6 +127,10 @@ Supported instructions are:
 - BRLE: branch to program instruction if register (8, 16 or 32 bits) <= 0
 - MOV: move content of general-purpose register to another one, (8, 16 or 32 bits)
 - MOVI: move 8bit or 16bit number to general-purpose register
+- ADDSP: add 8-bit immediate to stack Pointer
+- SUBSP: subtract 8-bit immediate to stack Pointer
+- MOVSP: move value of stack pointer to another register
+- RESSP: reset stack pointer
 
 ## Credits
 
