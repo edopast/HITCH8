@@ -90,6 +90,7 @@ The EEPROM memory containing the program is addressed by 13 bits (total 8192 ass
 
 Addressed by MAR (actually two registers, one for LSB and one for MSB). The returned data are sent to MDR register.
 This module is meant to store variables (the user/compiler must keep track of their address and size in memory, as a sort of "heap" area). Moreover, a register called "stack pointer" is used to point to the first 8-bit free address, forming the stack. In order to separate stack and heap, the former starts from 0x0000 and is filled incrementing the address, while the latter starts from 0xFFFF and is filled decrementing the address.
+MAR is 16-bits, MDR is 8-bits. each combination of bits of MAR points to a different byte of RAM. 16-bits and 32-bits data are stored following the little-endian convention.
 
 ### 5. Control Unit
 
@@ -121,17 +122,20 @@ Supported instructions are:
 - SUBI: register minus 8-bit immediate (8 bits reg);
 - LDW: load from RAM memory to a register (8 or 16 bits);
 - STW: store content of a register to RAM memory (8 or 16 bits);
-- BRZ: branch to program instruction if register (8, 16 or 32 bits) = 0
-- BRG: branch to program instruction if register (8, 16 or 32 bits) > 0
-- BRGE: branch to program instruction if register (8, 16 or 32 bits) >= 0
-- BRL: branch to program instruction if register (8, 16 or 32 bits) < 0
-- BRLE: branch to program instruction if register (8, 16 or 32 bits) <= 0
-- MOV: move content of general-purpose register to another one, (8, 16 or 32 bits)
-- MOVI: move 8bit or 16bit number to general-purpose register
-- ADDSP: add 8-bit immediate to stack Pointer
-- SUBSP: subtract 8-bit immediate to stack Pointer
-- MOVSP: move value of stack pointer to another register
-- RESSP: reset stack pointer
+- LDWSP: load from RAM memory to a register (8 or 16 bits). Address of Stack Pointer;
+- STWSP: store content of a register to RAM memory (8 or 16 bits). Address of Stack Pointer;
+- BRZ: branch to program instruction if register (8, 16 or 32 bits) = 0;
+- BRG: branch to program instruction if register (8, 16 or 32 bits) > 0;
+- BRGE: branch to program instruction if register (8, 16 or 32 bits) >= 0;
+- BRL: branch to program instruction if register (8, 16 or 32 bits) < 0;
+- BRLE: branch to program instruction if register (8, 16 or 32 bits) <= 0;
+- JMP: unconditional jump to instruction;
+- MOV: move content of general-purpose register to another one, (8, 16 or 32 bits);
+- MOVI: move 8bit or 16bit number to general-purpose register;
+- ADDSP: add 8-bit immediate to stack Pointer;
+- SUBSP: subtract 8-bit immediate to stack Pointer;
+- MOVSP: move value of stack pointer to another register;
+- RESSP: reset stack pointer;
 
 ## Credits
 

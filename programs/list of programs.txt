@@ -166,3 +166,6 @@ RESSP
 At the end I should have:
 SP = 0x0000
 R1 = 0xFFF5
+
+program12 --> NOP,then:
+### write a test program to store words to RAM, load words from RAM and JUMP to other instructions uncondit.
