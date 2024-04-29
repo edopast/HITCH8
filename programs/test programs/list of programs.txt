@@ -168,4 +168,26 @@ SP = 0x0000
 R1 = 0xFFF5
 
 program12 --> NOP,then:
-### write a test program to store words to RAM, load words from RAM and JUMP to other instructions uncondit.
+STWSP8 content of R0_l to RAM address (STACK POINTER)
+ADDSP 0X01
+STWSP8 content of R0_m to RAM address (STACK POINTER)
+ADDSP 0X01
+STWSP16 content of R2 to RAM address (STACK POINTER)
+ADDSP 0X02
+STWSP16 content of R4_l to RAM address (STACK POINTER)
+ADDSP 0XFC
+STWSP16 content of R4_m to RAM address (STACK POINTER)
+ADDSP 0X02
+SUBSP 0x02
+LDWSP16 content of RAM address (STACK POINTER) to R5_m
+SUBSP 0XFC
+LDWSP16 content of RAM address (STACK POINTER) to R5_l
+SUBSP 0x02
+LDWSP16 content of RAM address (STACK POINTER) to R3
+SUBSP 0x01
+LDWSP8 content of RAM address (STACK POINTER) to R1_m
+SUBSP 0x01
+LDWSP8 content of RAM address (STACK POINTER) to R1_l
+JMP to instruction 1000
+instruction 1001: HLT.
+preliminary load some numbers in R0, R2, R4: you will find R1=R0, R3=R2,R5=R4
