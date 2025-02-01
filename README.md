@@ -23,7 +23,7 @@ In this repo you will find:
 
 - A directory "microcode" with the commented microcode (i.e. the memory to be stored in the microcode EEPROM, inside the control unit) and the uncommented microcode to be loaded;
 
-- A directory "programs" with all the assembly programs so far created, to be loaded in program EEPROM;
+- A directory "programs" with all the assembly programs created so far, to be loaded in program EEPROM;
 
 - An .xlsx worksheet with important information regarding the instruction set and microcode memory.
 
@@ -109,38 +109,63 @@ The complete instruction set and all related information can be found in _Instru
 
 Supported instructions are:
 
+### General operations
+
 - NOP: no operation, go to next instruction;
 - HLT: stop execution;
+
+### Bitwise operations
+
 - AND: bitwise AND (8 or 16 bits) between two registers;
 - OR: bitwise OR (8 or 16 bits) between two registers;
 - SHL: bitwise logic shift to the left the content of a register (8, 16 or 32 bits);
 - SHR: bitwise logic shift to the right the content of a register (8, 16 or 32 bits);
 - SHRA: bitwise aritmetic shift to the right the content of a register (8, 16 or 32 bits);
+
+### Basic arithmetic operations
+
 - ADD: addition between two registers (8, 16 or 32 bits);
 - SUB: subtraction between two registers (8, 16 or 32 bits);
 - ADDI: register plus 8-bit immediate (8 bits reg);
 - SUBI: register minus 8-bit immediate (8 bits reg);
+
+### RAM management
+
 - LDW: load from RAM memory to a register (8 or 16 bits);
 - STW: store content of a register to RAM memory (8 or 16 bits);
-- LDWSP: load from RAM memory to a register (8 or 16 bits). Address of Stack Pointer;
-- STWSP: store content of a register to RAM memory (8 or 16 bits). Address of Stack Pointer;
+- LDWSP: load from RAM memory to a register (8 or 16 bits). Address stored in Stack Pointer;
+- STWSP: store content of a register to RAM memory (8 or 16 bits). Address stored in Stack Pointer;
+
+### Branches and jumps
+
 - BRZ: branch to program instruction if register (8, 16 or 32 bits) = 0;
 - BRG: branch to program instruction if register (8, 16 or 32 bits) > 0;
 - BRGE: branch to program instruction if register (8, 16 or 32 bits) >= 0;
 - BRL: branch to program instruction if register (8, 16 or 32 bits) < 0;
 - BRLE: branch to program instruction if register (8, 16 or 32 bits) <= 0;
 - JMP: unconditional jump to instruction;
+
+### Move and write registers
+
 - MOV: move content of general-purpose register to another one, (8, 16 or 32 bits);
 - MOVI: move 8bit or 16bit number to general-purpose register;
+
+### Stack pointer management
+
 - ADDSP: add 8-bit immediate to stack Pointer;
 - SUBSP: subtract 8-bit immediate to stack Pointer;
 - MOVSP: move value of stack pointer to another register;
 - RESSP: reset stack pointer;
+
+## Programs
+
+So far, two samples programs have been created. They can be found in programs folder:
+- MUL8 performs multiplications between two unsigned 8-bits integers
+- MUL16 performs multiplications between two unsigned 16-bits integers
+More examples in the future.
 
 ## Credits
 
  - [Ben Eater's 8-bit CPU](https://eater.net/) 
  - [Carl Burch's Logisim](https://sourceforge.net/projects/circuit/)
  - The "microcontrollers and DSPs" course I took during the Bachelor's degree course in Mechatronic Engineering, University of Padova
-
-

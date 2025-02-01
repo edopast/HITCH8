@@ -1,0 +1,65 @@
+* * * Product of two unsigned 16-bit numbers * * *
+
+The product will be stored in a 32-bit register "P".
+the multiplicand is stored in an 16-bit reg "N".
+the multiplier is stored in the lower part of "P". The upper part of P (most significant 16 bits) is called Pm, the lower part is Pl
+
+* PSEUDOCODE:
+i = 16;
+WHILE (i > 0) {
+  IF (LSB(P) == 1) {
+    Pm = Pm + N;
+  }
+  P = P >> 1;
+  i = i - 1;
+}
+
+* ALLOWED REGISTERS:
+multiplicand (16bit): R1, R2, R3, R4l, R5l
+multiplier (16bit): R4, R5
+R0 is a support register: R0l is used to check LSB of P, while R0m holds the value of the iterator "i"
+
+* COMMAND INSTRUCTION:
+multiplication between registers: MULU16 $(multiplier and result register) $(multiplicand)
+multiplication between register and integer: TO BE CODED
+
+* EXAMPLE:
+MULU16code.txt is an example of multiplication.
+R1 can be set to any unsigned 16bit integer (multiplicand). In the example, 2493 (0x9BD)
+R4 can be set to any unsigned 16bit integer, but writing 32bits (multiplier - product. most significant 16 bits must be 0). In the example, 58004 (0xE294).
+Result must be 144603972 (0x89E7B44).
+
+* STEPS:
+	// load R1 (multiplicand) and R4 (multiplier in R4l, R4m to zero)
+ 0. NOP			0000000
+ 1. MOVI16 $R1 2493	2b209bd
+ 2. MOVI16 $R4l 58004	2b8e294
+ 3. MOVI16 $R4m 0	2ba0000
+	// set R0m (support register) to 16, the iterator variable
+ 4. MOVI8 $R0m 16	2911000
+	// decrease R0m by 1
+ 5. SUBI8 $R0m $R0m 1	2e11001
+	// set R0l (support register) to Pl value
+ 6. MOV8 $R0l $R4ll	2808000
+	// bitwise logic shift left of R0l to check if LSB was 1, 7 times + 1 time right (branch operations are signed)
+ 7. SHL8 $R0l		0600000
+ 8. SHL8 $R0l		0600000
+ 9. SHL8 $R0l		0600000
+10. SHL8 $R0l		0600000
+11. SHL8 $R0l		0600000
+12. SHL8 $R0l		0600000
+13. SHL8 $R0l		0600000
+14. SHR8 $R0l		0700000
+	// if now R0l>0, then LSB was 1, so go to sum instruction (19)
+15. BRG8 $R0l 19	1a00013
+	// bitwise logic shift right of P
+16. SHR32 $R4 $R4	0d88000
+	// if now R0m>0, then go to step 5 (iterator i still > 0)
+17. BRG8 $R0m 5		1a10005
+	// end
+18. HLT			0100000
+
+	// sum instruction
+19. ADD16 $R4m $R4m $R1	0faa200
+	// go to step 16
+20. JMP 16		3700010
